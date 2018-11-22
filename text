@@ -1,0 +1,61 @@
+vim: wrap
+
+The days are getting shorter and the nights are getting colder. Isn't this a wonderful time for doing code katas? Imagine yourself, sitting in your favorite easy chair, in front of a fireplace, in a snowed-in cabin up in the mountains... cozily typing away in your favorite editor.
+
+Today's kata is about reversing the bits in an integer. For instance, reversing the 8-bit integer 139 (10001011) yields 209 (11010001). Sounds simple, doesn't it? But it's not just about coding the bit-reversing routine. We'll practice unit testing, code tuning and — if you like — assembly language programming along the way.
+
+Don't forget that the goal is not to find the best/fastest algorithm possible. Instead, we want to excercise our programming muscle and learn new things. Don't rush this kata, either. It's OK if it takes you days or even weeks, as long as you do it. That said, let's get started:
+
+1. Implement a bit reversing function in a dynamic programming language (eg. Perl, Ruby, Python).
+
+a) Decide on a suitable interface, eg. in Python, it could look like this:
+
+    def reversebits(max_bits, value):
+        """ Returns given value with all bits reversed.
+            max_bits -- Bit-width of 'value' (as there can be leading zeros in 'value')
+            value -- The actual value that is to be reversed. """
+
+b) Implement a dummy version of 'reversebits' that simply returns 0.
+
+c) Implement a couple of test cases, run them against the dummy version and watch them fail, eg.
+
+    reversebits(8, 0x01) == 0x80
+    reversebits(32, 0x01) == 0x80000000
+    reversebits(16, 0xFFFF) == 0xFFFF0000
+
+d) Implement a straightforward solution ('reversebits1') that passes all unit tests.
+
+e) Measure the execution time of 'reversebits1'.
+
+f) Be creative, devise other algorithms ('reversebits2' - 'reversebitsn'). Optimize for speed, optimize for shortest code (in terms of characters typed). Measure and compare the execution times.
+
+g) What if 'max_bits' is smaller than the total number of bits already used by 'value'? For instance
+
+    reversebits(3, 0xFFFF) # 3 bits vs. 16 bits
+
+    In this case, only the first 'max_bits' of 'value' should be reversed and the remaining upper bits shall be discarded. Adapt your code accordingly. Probably, some versions already behave like this.
+
+    reversebits(3, 0xFFFF) == 3
+    reversebits(3, 0x13) == 6
+
+2. Port your code and unit tests to C/C++
+
+data type!!!
+
+a) Measure execution times and compare them with the execution times from 1.
+
+b) Play with various compiler optimization settings.
+
+c) Bonus: Implement 'reversebits_asm' in assembly language.
+
+
+3. Port your code and tests from 1. and 2. to a Raspberry Pi
+
+a) Don't have a Raspi? Find out how to emulate one on your PC (hint: quemu).
+
+b) Measure and compare execution times using various optimization settings.
+
+c) Bonus: Implement 'reversebits_asm' in assembly language.
+
+
+I put my scribblings on github
