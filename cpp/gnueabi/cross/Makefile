@@ -2,7 +2,7 @@ ifneq ("$(MAKECMDGOALS)", "clean")
 
 # TODO comment
 ifeq ("$(GOOGLE_TEST_HOME_GNUEABI)", "")
-$(error "Please define GOOGLE_TEST_HOME, ie. `make GOOGLE_TEST_HOME=~/googletest-release-1.8.0'")
+$(error "Please define GOOGLE_TEST_HOME_GNUEABI, ie. `make GOOGLE_TEST_HOME_GNUEABI=~/googletest-release-1.8.0'")
 endif
 endif
 
