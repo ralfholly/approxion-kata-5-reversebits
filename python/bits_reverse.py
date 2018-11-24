@@ -125,7 +125,7 @@ class TestBitsReverse(unittest.TestCase):
 
     def test_measure_performance(self):
         this_module_name = os.path.splitext(os.path.basename(sys.argv[0]))[0]
-        REPEAT_COUNT = 1000
+        REPEAT_COUNT = 100000
 
         for my_sut in suts:
             sut_name = func_name_from_callable(my_sut)
