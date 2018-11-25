@@ -27,7 +27,7 @@ GTEST_LIBRARY_PATH = $(GOOGLE_TEST_HOME)/googlemock/gtest
 
 # 'override' allows you to pass in extra flags when invoking `make', ie.
 # make CPPFLAGS=-std=c++14
-override CPPFLAGS += -D SKIP_ASM -std=c++14 -O2 -W -Wall -g -pthread -I $(GTEST_INCLUDE_PATH)/include -I $(GMOCK_INCLUDE_PATH)/include
+override CPPFLAGS += -std=c++14 -O2 -W -Wall -g -pthread -I $(GTEST_INCLUDE_PATH)/include -I $(GMOCK_INCLUDE_PATH)/include
 override LDFLAGS += -L$(GTEST_LIBRARY_PATH) -L$(GMOCK_LIBRARY_PATH)
 override LDLIBS += -lgtest_main -lgtest -lgmock
 
@@ -35,7 +35,7 @@ override LDLIBS += -lgtest_main -lgtest -lgmock
 
 all: get-me-gtest/done bits_reverse
 
-bits_reverse: bits_reverse.cpp bits_reverse_asm.cpp # TODO bits_reverse_asm.s
+bits_reverse: bits_reverse.cpp bits_reverse_asm.s
 
 test: bits_reverse
 	# Transfer to and execute on Pi.
