@@ -15,21 +15,13 @@
 # problems.
 #
 
-GOOGLE_TEST_HOME := /home/ralf/get-me-gtest-gnueabihf/googletest-release-1.8.1
 CC := /home/ralf/x-tools/armv6-rpi-linux-gnueabihf/bin/armv6-rpi-linux-gnueabihf-gcc
 CXX := /home/ralf/x-tools/armv6-rpi-linux-gnueabihf/bin/armv6-rpi-linux-gnueabihf-g++
 RASPI_REMOTE := ralf@raspi
 
-ifneq ("$(MAKECMDGOALS)", "clean")
-
-ifeq ("$(GOOGLE_TEST_HOME)", "")
-$(error "Please define GOOGLE_TEST_HOME, ie. `make GOOGLE_TEST_HOME=~/googletest-release-1.8.0'")
-endif
-endif
-
+GOOGLE_TEST_HOME := ./get-me-gtest/googletest-release-1.8.1
 GMOCK_INCLUDE_PATH = $(GOOGLE_TEST_HOME)/googlemock
 GTEST_INCLUDE_PATH = $(GOOGLE_TEST_HOME)/googletest
-
 GMOCK_LIBRARY_PATH = $(GOOGLE_TEST_HOME)/googlemock
 GTEST_LIBRARY_PATH = $(GOOGLE_TEST_HOME)/googlemock/gtest
 
@@ -41,13 +33,20 @@ override LDLIBS += -lgtest_main -lgtest -lgmock
 
 .PHONY : clean test
 
-all: bits_reverse
+all: get-me-gtest/done bits_reverse
 
-bits_reverse: bits_reverse.cpp # TODO bits_reverse_asm.s
+bits_reverse: bits_reverse.cpp bits_reverse_asm.cpp # TODO bits_reverse_asm.s
 
 test: bits_reverse
 	# Transfer to and execute on Pi.
 	rsync $< $(RASPI_REMOTE):/tmp && ssh $(RASPI_REMOTE) /tmp/$<
+
+# Cross-build googletest/googlemock in local directory for Pi target.
+get-me-gtest/done:
+	git clone https://github.com/ralfholly/get-me-gtest.git && \
+	cd get-me-gtest && \
+	make VERSION=release-1.8.1 CMAKE_ARGS="-D CMAKE_CXX_COMPILER:FILEPATH=$(CXX)" && \
+	touch done
 
 clean:
 	rm -rf *.o bits_reverse
