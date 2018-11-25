@@ -10,6 +10,10 @@ GTEST_INCLUDE_PATH = $(GOOGLE_TEST_HOME)/googletest
 GMOCK_LIBRARY_PATH = $(GOOGLE_TEST_HOME)/googlemock
 GTEST_LIBRARY_PATH = $(GOOGLE_TEST_HOME)/googlemock/gtest
 
+# Number of repetitions for performance measurements.
+# Increase for fast targets, reduce for slow targets.
+override CPPFLAGS += -D REPEAT_COUNT=20'000'000
+
 # 'override' allows you to pass in extra flags when invoking `make', ie.
 # make CPPFLAGS=-std=c++14
 override CPPFLAGS += -std=c++14 -O2 -W -Wall -g -pthread -I $(GTEST_INCLUDE_PATH)/include -I $(GMOCK_INCLUDE_PATH)/include

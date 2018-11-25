@@ -157,8 +157,6 @@ TEST(bits_reverse, checkCorrectness) {
 
 
 TEST(bits_reverse, measureRuntime) {
-    constexpr int REPEAT_COUNT = 10'000'000;
-
     for (SutEntry sut_entry : all_suts()) {
         cout << sut_entry.sut_name_;
         uint64_t t1 = get_clock_usec();
