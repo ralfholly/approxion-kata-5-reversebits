@@ -1,5 +1,5 @@
-#ifndef BITS_REVERSE_ASM_H
-#define BITS_REVERSE_ASM_H
+#ifndef REVERSEBITS_ASM_H
+#define REVERSEBITS_ASM_H
 
 #include <cstddef>
 

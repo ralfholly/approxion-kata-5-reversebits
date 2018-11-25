@@ -11,7 +11,7 @@ using namespace std;
 #include "gmock/gmock.h"
 using namespace testing;
 
-#include "bits_reverse_asm.h"
+#include "reversebits_asm.h"
 
 
 size_t reversebits1(size_t max_bits, size_t num) {

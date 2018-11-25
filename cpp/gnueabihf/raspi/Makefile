@@ -1,6 +1,9 @@
+#
+# Makfile for compiling directly on the target.
+#
+
 ifneq ("$(MAKECMDGOALS)", "clean")
 
-# TODO comment
 ifeq ("$(GOOGLE_TEST_HOME)", "")
 $(error "Please define GOOGLE_TEST_HOME, ie. `make GOOGLE_TEST_HOME=~/googletest-release-1.8.0'")
 endif
@@ -26,10 +29,10 @@ override LDLIBS += -lgtest_main -lgtest -lgmock
 
 all: test
 
-bits_reverse: bits_reverse.cpp bits_reverse_asm.s
+reversebits: reversebits.cpp reversebits_asm.s
 
-test: bits_reverse
+test: reversebits
 	./$<
 
 clean:
-	rm -rf *.o bits_reverse
+	rm -rf *.o reversebits

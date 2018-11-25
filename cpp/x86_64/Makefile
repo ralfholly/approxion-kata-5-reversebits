@@ -24,10 +24,10 @@ override LDLIBS += -lgtest_main -lgtest -lgmock
 
 all: test
 
-bits_reverse: bits_reverse.cpp bits_reverse_asm.s
+reversebits: reversebits.cpp reversebits_asm.s
 
-test: bits_reverse
+test: reversebits
 	./$<
 
 clean:
-	rm -rf *.o bits_reverse
+	rm -rf *.o reversebits
