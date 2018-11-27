@@ -23,8 +23,10 @@
 # Raspi without any problems.
 #
 
-CXX := /home/ralf/x-tools/armv6-rpi-linux-gnueabihf/bin/armv6-rpi-linux-gnueabihf-g++
+CROSS_HOME := /home/ralf/x-tools/armv6-rpi-linux-gnueabihf/bin
 RASPI_REMOTE := ralf@raspi
+
+CXX := $(CROSS_HOME)/armv6-rpi-linux-gnueabihf-g++
 
 GOOGLE_TEST_HOME := ./get-me-gtest/googletest-release-1.8.1
 GMOCK_INCLUDE_PATH = $(GOOGLE_TEST_HOME)/googlemock
