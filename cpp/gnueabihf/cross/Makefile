@@ -13,6 +13,8 @@
 #    since 6.5.0 is much closer to the version 6.3.0 that is installed on my Pi.
 # 2. Use glibc version 2.24 instead of 2.28, since only version 2.24 is
 #   installed on my Pi.
+# I put the crosstool-ng configuration file (.config) that I used for the
+# generation of my cross toolchain in ./crosstool-ng.
 #
 # Next, I cross-compiled googletest/googlemock using the cross-compiler as a
 # preliminary step. This step is now covered by this Makefile.
@@ -36,7 +38,7 @@ override CPPFLAGS += -D REPEAT_COUNT=1'000'000
 
 # 'override' allows you to pass in extra flags when invoking `make', ie.
 # make CPPFLAGS=-std=c++14
-override CPPFLAGS += -std=c++14 -O2 -W -Wall -g -pthread -I $(GTEST_INCLUDE_PATH)/include -I $(GMOCK_INCLUDE_PATH)/include
+override CPPFLAGS += -std=c++14 -O2 -W -Wall -g3 -pthread -I $(GTEST_INCLUDE_PATH)/include -I $(GMOCK_INCLUDE_PATH)/include
 override LDFLAGS += -L$(GTEST_LIBRARY_PATH) -L$(GMOCK_LIBRARY_PATH)
 override LDLIBS += -lgtest_main -lgtest -lgmock
 
@@ -59,3 +61,7 @@ get-me-gtest/done:
 
 clean:
 	rm -rf *.o reversebits
+
+clean-all: clean
+	rm -rf get-me-gtest
+	

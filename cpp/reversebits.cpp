@@ -145,7 +145,6 @@ TEST(bits_reverse, checkCorrectness) {
         cout << sut_entry.sut_name_ << endl;
         EXPECT_EQ(0x80U, sut_entry.sut_func_(8, 0x01U));
         EXPECT_EQ(0x00U, sut_entry.sut_func_(32, 0x00U));
-        EXPECT_EQ(0x00U, sut_entry.sut_func_(32, 0x00U));
         EXPECT_EQ(0xFFFFU, sut_entry.sut_func_(16, 0xFFFFU));
         EXPECT_EQ(0x0FU, sut_entry.sut_func_(8, 0xF0U));
         EXPECT_EQ(0b11010011U, sut_entry.sut_func_(8, 0b11001011U));

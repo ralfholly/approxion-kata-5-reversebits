@@ -28,7 +28,7 @@ reversebits_asm1:
     ret
 
 
-# TODOReverse bits by employing rotate-carry-right, rotate-carry-left instructions.
+# Like reversebits_asm1, but with loop-unrolling.
 # %rdi: max_bits
 # %rsi: num
 reversebits_asm2:
@@ -87,6 +87,9 @@ reversebits_asm2:
     ret
 
 
+# Like reversebits_asm2, but without 'div' instruction.
+# %rdi: max_bits
+# %rsi: num
 reversebits_asm3:
 
     movq    %rdi, %rcx
