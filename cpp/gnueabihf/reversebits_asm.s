@@ -1,17 +1,16 @@
-    .cpu arm1176jzf-s
-    .syntax unified
-    .arm
-    .fpu vfp
-    .type   reversebits_asm1, %function
-    .global reversebits_asm1, reversebits_asm2, reversebits_asm3
+.global reversebits_asm1, reversebits_asm2, reversebits_asm3
+
+# From the AAPCS, §5.1.1:
+#
+# r0-r3 are the argument and scratch registers; r0-r1 are also the result registers
+# r4-r8 are callee-save registers
+# r9 might be a callee-save register or not (on some variants of AAPCS it is a special register)
+# r10-r11 are callee-save registers
+# r12-r15 are special registers
 
 reversebits_asm1:
 reversebits_asm2:
 reversebits_asm3:
-    .fnstart
-.LFB0:
-    @ args = 0, pretend = 0, frame = 0
-    @ frame_needed = 0, uses_anonymous_args = 0
     push    {r4, r5, r6, lr}
     add r6, r0, #1
     lsrs    r6, r6, #1
