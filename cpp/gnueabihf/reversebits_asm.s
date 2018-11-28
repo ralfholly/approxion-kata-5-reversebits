@@ -1,5 +1,6 @@
-.global reversebits_asm1, reversebits_asm2, reversebits_asm3
-
+# Good introduction to ARM assembly language programming:
+# http://www.davespace.co.uk/tags/IntroductionToARM.html
+#
 # From the AAPCS, §5.1.1:
 #
 # r0-r3 are the argument and scratch registers; r0-r1 are also the result registers
@@ -7,33 +8,97 @@
 # r9 might be a callee-save register or not (on some variants of AAPCS it is a special register)
 # r10-r11 are callee-save registers
 # r12-r15 are special registers
+#
+# r12 = ip  inter-procedure scratch register
+# r13 = sp  stack pointer
+# r14 = lr  link register
+# r15 = pc  programm counter
 
+.global reversebits_asm1, reversebits_asm2, reversebits_asm3
+
+# ARM doesn't have an rotate-carry-left, so do a shift-left and add the carry.
+# r0: max_bits
+# r1: value
 reversebits_asm1:
+    mov r3, #0              // result
+    cmp r0, #0
+    beq .done1
+
+.redo1:
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    subs r0, r0, #1         // decrement loop counter
+    bne .redo1
+
+.done1:
+    mov r0, r3
+    mov pc, lr
+
+
+# Like reversebits_asm1, but with loop unrolling.
+# r0: max_bits
+# r1: value
 reversebits_asm2:
+    mov r3, #0              // result
+
+    movs r2, r0, LSR #3     // r2 = r0 / 8
+    beq .done21
+
+.redo21:
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    subs r2, r2, #1         // decrement loop counter
+    bne .redo21
+
+.done21:
+    ands r2, r0, #7         // r2 = r0 % 8
+    beq .done22
+
+.redo22:
+    movs r1, r1, lsr #1     // shift right into carry
+    mov r3, r3, lsl #1      // shift left result
+    adc r3, r3, #0          // add carry
+
+    subs r2, r2, #1         // decrement loop counter
+    bne .redo22
+
+.done22:
+    mov r0, r3
+    mov pc, lr
+
+
+# I had no idea for another implementation, so just call the second one.
 reversebits_asm3:
-    push    {r4, r5, r6, lr}
-    add r6, r0, #1
-    lsrs    r6, r6, #1
-    beq .L4
-    mov r2, #0
-    mov r5, #1
-    mov r4, r2
-    sub r0, r0, #1
-.L3:
-    sub ip, r0, r2
-    and r3, r1, r5, lsl ip
-    and lr, r1, r5, lsl r2
-    lsr r3, r3, ip
-    lsl r3, r3, r2
-    lsr lr, lr, r2
-    add r2, r2, #1
-    orr r3, r3, lr, lsl ip
-    cmp r2, r6
-    orr r4, r4, r3
-    bne .L3
-.L1:
-    mov r0, r4
-    pop {r4, r5, r6, pc}
-.L4:
-    mov r4, r6
-    b   .L1
+    b reversebits_asm2

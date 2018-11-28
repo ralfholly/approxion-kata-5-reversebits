@@ -1,4 +1,5 @@
 *.sw?
 __pycache__/
 reversebits
+.gdb_history
 
