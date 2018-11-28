@@ -1,10 +1,14 @@
 vim: wrap
 
-The days are getting shorter and the nights are getting colder. Isn't this a wonderful time for doing code katas? Imagine yourself, sitting in your favorite easy chair, in front of a fireplace, in a snowed-in cabin up in the mountains... cozily typing away in your favorite editor...
+Boredom is just the reverse side of fascination: both depend on being outside rather than inside a situation, and one leads to the other. Arthur Schopenhauer
 
-Today's kata is about reversing the bits in an integer. For instance, reversing the 8-bit integer 139 (10001011) yields 209 (11010001). Sounds simple, doesn't it? But it's not just about coding the bit-reversing routine. We'll practice unit testing, code tuning and — if you like — assembly language programming along the way.
+Winter is definitely approaching. The days are getting shorter and the nights are getting colder. Isn't this a wonderful time for doing code katas? Sitting in your favorite easy chair, in front of a fireplace, in a snowed-in cabin up in the mountains... cozily typing away in your favorite editor.
 
-Don't forget that the goal is not to find the best/fastest algorithm possible. Instead, we want to exercise our programming muscles and learn new things. Don't rush this kata, either. Do the research, be persistent. Try and fail and become better. It's OK if it takes you days or even weeks. I did it over a period of three weeks. Now, without further ado, let's get started!
+Today, we dip once more into the realm of low-level embedded programming by reversing the bits of an integer. For instance, reversing the 8-bit integer 139 (10001011) yields 209 (11010001).
+
+Sounds simple, doesn't it? But it's not just about coding a bit-reversing routine, that wouldn't teach us enough lessons. We'll also practice unit testing, code tuning and — if you like — assembly language programming, cross-compilation, and remote debugging along the way.
+
+The goal is not to find the best/fastest algorithm possible. Instead, we want to exercise our programming muscles and learn new things. Don't rush this kata, either. Do the research, be persistent. Try and fail and become better. Take your time, I did it over a period of three weeks. Now, without further ado, let's get (gently) started.
 
 1. Implement a bit reversing function in a dynamic programming language (eg. Perl, Ruby, Python).
 
@@ -36,22 +40,23 @@ h) What if 'max_bits' is smaller than the total number of bits already taken-up 
 
     reversebits(3, 0xFFFF) # 3 bits vs. 16 bits
 
-    In this case, only the first 'max_bits' of 'value' shall be reversed and the remaining upper bits shall be discarded. Adapt your code accordingly. Probably, some of your solutions already behave like this.
+    In this case, only the first 'max_bits' of 'value' shall be reversed and the remaining upper bits shall be discarded:
 
     reversebits(3, 0xFFFF) == 3
     reversebits(3, 0x13) == 6
-    :
+
+Adapt your code accordingly. Probably, some of your solutions already behave correctly and need no modifications.
 
 
 2. Port your code and unit tests to C/C++
 
 a) Decide on a suitable interface. It's OK if you use a fixed-bit unsigned integer data type for the value to be reversed, as long as it supports at least 32-bits, eg.
 
-    size_t reversebits(size_t max_bits, size_t value);
+    uint32_t reversebits(uint32_t max_bits, uint32_t value);
 
-b) Measure execution times and compare them with the execution times from 1.
+b) Measure execution times and compare against the execution times from 1.
 
-c) Play with various compiler optimization settings.
+c) Play with various compiler optimization settings. How do they impact the timings?
 
 d) Bonus: Implement a bit reversal function in x86 assembly language.
 
@@ -64,6 +69,6 @@ b) Measure and compare execution times using various optimization settings.
 
 c) Bonus: Implement a bit reversal function in ARM assembly language.
 
-d) Bonus: Want to learn even more? Build your own cross toolchain and build the Pi code on a regular PC. Debug the code remotely over a TCP connection with 'gdbserver'.
+d) Bonus: Want to learn even more? Build your own cross toolchain (hint: 'crosstool-ng') and build the Pi code on a regular PC. Debug the code remotely over a TCP connection (hint: 'gdbserver', 'gdb-multiarch').
 
-I certainly learned a lot by doing this kata. Far more, than I can possible tell here and I certainly don't want to spoil it. Still, I uploaded my work to GitHub. Have a peek in case you get stuck, need some inspiration or are just curious.
+I certainly learned a lot by doing this kata. Far more, than I can possible tell here without risking to bore you and/or spoil all the fun. Still, I uploaded my work to GitHub. Have a peek in case you get stuck, need some inspiration or are just curious.
