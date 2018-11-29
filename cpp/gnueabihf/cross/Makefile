@@ -25,7 +25,6 @@
 
 CROSS_HOME := /home/ralf/x-tools/armv6-rpi-linux-gnueabihf/bin
 RASPI_REMOTE := ralf@raspi
-
 CXX := $(CROSS_HOME)/armv6-rpi-linux-gnueabihf-g++
 
 GOOGLE_TEST_HOME := ./get-me-gtest/googletest-release-1.8.1
@@ -37,9 +36,6 @@ GTEST_LIBRARY_PATH = $(GOOGLE_TEST_HOME)/googlemock/gtest
 # Number of repetitions for performance measurements.
 # Increase for fast targets, reduce for slow targets.
 override CPPFLAGS += -D REPEAT_COUNT=1'000'000
-
-# 'override' allows you to pass in extra flags when invoking `make', ie.
-# make CPPFLAGS=-std=c++14
 override CPPFLAGS += -std=c++14 -O2 -W -Wall -g3 -pthread -I $(GTEST_INCLUDE_PATH)/include -I $(GMOCK_INCLUDE_PATH)/include
 override LDFLAGS += -L$(GTEST_LIBRARY_PATH) -L$(GMOCK_LIBRARY_PATH)
 override LDLIBS += -lgtest_main -lgtest -lgmock

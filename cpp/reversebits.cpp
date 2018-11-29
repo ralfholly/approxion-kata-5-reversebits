@@ -122,11 +122,9 @@ static vector<SutEntry> all_suts() {
     suts.emplace_back(MAKE_SUT_ENTRY(reversebits4));
     suts.emplace_back(MAKE_SUT_ENTRY(reversebits5));
     suts.emplace_back(MAKE_SUT_ENTRY(reversebits6));
-#ifndef SKIP_ASM
     suts.emplace_back(MAKE_SUT_ENTRY(reversebits_asm1));
     suts.emplace_back(MAKE_SUT_ENTRY(reversebits_asm2));
     suts.emplace_back(MAKE_SUT_ENTRY(reversebits_asm3));
-#endif
     return suts;
 }
 

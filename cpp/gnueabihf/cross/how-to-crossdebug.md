@@ -2,9 +2,11 @@ How to Cross Debug
 ==================
 
 * Install 'gdb-multiarch', the multi-architecture gdb, on the host
+
 * Install 'gdb-server' on the target
 
-* Cross-compile with -g and O0 on the host
+* Cross-compile with -g and -O0 on the host
+
 * Transfer the executable to the target: /path/to/target/exe
 
 * On target, start 'gdb-server':

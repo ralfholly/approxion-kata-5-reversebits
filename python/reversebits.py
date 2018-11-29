@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# import pudb; pudb.set_trace(paused=False)
 # pylint: disable=C0103
 
 import unittest
@@ -10,6 +9,7 @@ import os
 
 suts = []
 
+# A decorator that auto-appends to a list of functions.
 def sut(fun):
     suts.append(fun)
     return fun
@@ -57,12 +57,17 @@ def reversebits2(max_bits, num):
 
 @sut
 def reversebits3(max_bits, num):
-    """ Reversal based on string and list slicing operations. """
+    """ Reversal based on string and list slicing operations. 
+
+        BTW, this is the fastest bit reversal implementation
+        in this file! I guess Python can efficiently work with
+        strings, while C/C++ can efficiently work with bits. """
     return int(bin(num)[2:].zfill(max_bits)[-max_bits:][::-1], 2)
 
 
 @sut
 def reversebits4(max_bits, num):
+    """ A classic and simple bit reversal algorithm."""
     rev_num = 0
     for _ in range(max_bits):
         rev_num |= num & 1

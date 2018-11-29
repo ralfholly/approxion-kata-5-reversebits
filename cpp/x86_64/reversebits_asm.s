@@ -6,7 +6,7 @@
 #   Registers used for param passing:
 #   RDI, RSI, RDX, RCX, R8, R9, XMM0–7
 
-    .globl  reversebits_asm1, reversebits_asm2, reversebits_asm3
+.globl  reversebits_asm1, reversebits_asm2, reversebits_asm3
 
 # Reverse bits by employing rotate-carry-right, rotate-carry-left instructions.
 # %rdi: max_bits
@@ -36,12 +36,8 @@ reversebits_asm2:
     movq    %rdi, %rax
     movb    $8, %cl
     div     %cl
-    # %al: num / 8
-    # %ah: num % 8
-
-    movb    %al, %ch
-    movb    %ah, %cl
-
+    movb    %al, %ch    # num / 8
+    movb    %ah, %cl    # num % 8
     xorq    %rax, %rax
 
 # Block processing
@@ -69,10 +65,9 @@ reversebits_asm2:
 
     jmp     .loop21
 
-
 .done21:
-# Modulo processing
 
+# Modulo processing
 .loop22:
     cmpb    $0, %cl
     jz      .done22
@@ -91,13 +86,9 @@ reversebits_asm2:
 # %rdi: max_bits
 # %rsi: num
 reversebits_asm3:
-
     movq    %rdi, %rcx
-    shrq    $3, %rdi
-    andq    $7, %rcx
-    # %rdi: num / 8
-    # %rcx: num % 8
-
+    shrq    $3, %rdi    # num / 8
+    andq    $7, %rcx    # num % 8
     xorq    %rax, %rax
 
 # Block processing
@@ -125,10 +116,9 @@ reversebits_asm3:
 
     jmp     .loop31
 
-
 .done31:
-# Modulo processing
 
+# Modulo processing
 .loop32:
     cmpq    $0, %rcx
     jz      .done32

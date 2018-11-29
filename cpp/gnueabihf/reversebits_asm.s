@@ -99,6 +99,7 @@ reversebits_asm2:
     mov pc, lr
 
 
-# I had no idea for another implementation, so just call the second one.
+# Sorry, but I had no idea for another implementation, so just call the second one.
+# Hence, should be slightly slower.
 reversebits_asm3:
     b reversebits_asm2
