@@ -33,7 +33,7 @@ My proceedings of the [bit reversal code kata](https://www.approxion.com/?p=3075
 
 * Python development is painless and portable. Batteries (eg. unit testing) included.
 * Python can efficiently manipulate text (strings), but not bits.
-* Python bit manipulation can easily be 100 times slower than C bit manipulation
+* Python bit manipulation can easily be 100 times slower than C bit manipulation.
 * I couldn't beat the x86_64 C++ compiler with my (straightforward) assembly code.
-* I beat the arm-g++ compiler, so I assume that the arm-g++ doesn't have the best optimizer.
-* Pi3 is 4-5 times faster than Pi1
+* I beat the arm-g++ compiler, so I assume that arm-g++ doesn't have the best optimizer.
+* Pi3 is 4-5 times faster than Pi1.
