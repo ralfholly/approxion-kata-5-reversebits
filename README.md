@@ -16,6 +16,8 @@ My proceedings of the [bit reversal code kata](https://www.approxion.com/?p=3075
 
 ## Measurements
 
+All values in this table are measured in microseconds.
+
 |  Version           |  python[1]  |   c++[1]   |  python[2]  |  c++[2]  |  python[3]  |  c++[3]  |  python[4]  |  c++[4]  |
 |--------------------|-------------|------------|-------------|----------|-------------|----------|-------------|----------|
 |  reversebits1      |  6.64       |   0.064    |  6.97       |  0.087   |  85.08      |  0.126   |  451.59     |  0.470   |
@@ -32,7 +34,7 @@ My proceedings of the [bit reversal code kata](https://www.approxion.com/?p=3075
 ## Observations
 
 * Python development is painless and platform-neutral. Batteries (eg. unit testing) included.
-* The runtime of reversebits3 is a big surprise. It shows that Python can efficiently manipulate text (strings), but not bits.
+* The runtime of `reversebits3` is a big surprise. It shows that Python can efficiently manipulate text (strings), but not bits.
 * Python bit manipulation can easily be 100 times slower than C bit manipulation.
 * I couldn't beat the x86_64 C++ compiler with my (straightforward, simple-minded) assembly code.
 * I beat the arm-g++ compiler, so I assume that arm-g++ doesn't have the best optimizer.
