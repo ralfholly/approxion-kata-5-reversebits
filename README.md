@@ -6,12 +6,12 @@ My proceedings of the [bit reversal code kata](https://www.approxion.com/?p=3075
 
 ## Platforms
 
-|  Computer            |  CPU                          |  Operating System     | glibc  |  g++    | Python  |
-|----------------------|-------------------------------|-----------------------|--------|---------|---------|
-|  [1] Dell Notebook   |  Core(TM) i5-6300U @ 2.40GHz  |  Ubuntu 16.04         |  2.23  |  5.4.0  |  3.5.2  |
-|  [2] Thinkpad X250   |  Core(TM) i5-5200U @ 2.70GHz  |  Ubuntu 18.04         |  2.27  |  7.3.0  |  3.6.7  |
-|  [3] Raspberry Pi3B  |  armv7l/v8 @ 1.2GHz max       |  Raspian 9.4 Stretch  |  2.24  |  6.3.0  |  3.5.3  |
-|  [4] Raspberry Pi1B  |  armv6l @ 700Mhz              |  Raspian 9.6 Stretch  |  2.24  |  6.3.0  |  3.5.3  |
+|  ID   | Computer        |  CPU                          |  Operating System     | glibc  |  g++    | Python  |
+|-------|-----------------|-------------------------------|-----------------------|--------|---------|---------|
+|  [1]  | Dell Notebook   |  Core(TM) i5-6300U @ 2.40GHz  |  Ubuntu 16.04         |  2.23  |  5.4.0  |  3.5.2  |
+|  [2]  | Thinkpad X250   |  Core(TM) i5-5200U @ 2.70GHz  |  Ubuntu 18.04         |  2.27  |  7.3.0  |  3.6.7  |
+|  [3]  | Raspberry Pi3B  |  armv7l/v8 @ 1.2GHz max       |  Raspian 9.4 Stretch  |  2.24  |  6.3.0  |  3.5.3  |
+|  [4]  | Raspberry Pi1B  |  armv6l @ 700Mhz              |  Raspian 9.6 Stretch  |  2.24  |  6.3.0  |  3.5.3  |
 
 
 ## Measurements
@@ -31,9 +31,11 @@ My proceedings of the [bit reversal code kata](https://www.approxion.com/?p=3075
 
 ## Observations
 
-* Python development is painless and portable. Batteries (eg. unit testing) included.
-* Python can efficiently manipulate text (strings), but not bits.
+* Python development is painless and platform-neutral. Batteries (eg. unit testing) included.
+* The runtime of reversebits3 is a big surprise. It shows that Python can efficiently manipulate text (strings), but not bits.
 * Python bit manipulation can easily be 100 times slower than C bit manipulation.
-* I couldn't beat the x86_64 C++ compiler with my (straightforward) assembly code.
+* I couldn't beat the x86_64 C++ compiler with my (straightforward, simple-minded) assembly code.
 * I beat the arm-g++ compiler, so I assume that arm-g++ doesn't have the best optimizer.
 * Pi3 is 4-5 times faster than Pi1.
+* A mobile Core-i5 processor is 2 - 5 times faster than a Pi3.
+
