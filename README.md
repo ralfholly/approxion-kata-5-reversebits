@@ -16,7 +16,7 @@ My proceedings of the [bit reversal code kata](https://www.approxion.com/?p=3075
 
 ## Measurements
 
-All values in this table are measured in microseconds.
+All values in this table are given in microseconds (µsec).
 
 |  Version           |  python[1]  |   c++[1]   |  python[2]  |  c++[2]  |  python[3]  |  c++[3]  |  python[4]  |  c++[4]  |
 |--------------------|-------------|------------|-------------|----------|-------------|----------|-------------|----------|
