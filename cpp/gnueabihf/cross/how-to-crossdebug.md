@@ -14,12 +14,13 @@ How to Cross Debug
 
 * On host, start 'gdb-multiarch':
   gdb-multiarch
-  $ symbol-file /path/to/host/exe
   $ target extended-remote <target>:9999
   $ set remote exec-file /path/to/target/exe
+  $ symbol-file /path/to/host/exe
   $ start
   $ layout src
   $ layout reg
   $ b main
   $ continue
-
+  :
+  $ monitor exit    # Stops gdbserver on target
